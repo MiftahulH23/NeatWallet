@@ -50,6 +50,11 @@ const PemasukanMingguan = (props: { pemasukanMingguan: PemasukanMingguanType.Def
     });
 
     const columns: ColumnDef<PemasukanMingguanType.Default>[] = [
+       {
+            id: "Nomor",
+            header: 'No',
+            cell: (info) => info.row.index + 1,
+        },
         {
             accessorKey: 'amount',
             header: 'Jumlah Pemasukan',
@@ -70,10 +75,6 @@ const PemasukanMingguan = (props: { pemasukanMingguan: PemasukanMingguanType.Def
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (data.tanggal < start || data.tanggal > end) {
-            toast.error(`Tanggal harus antara ${start} dan ${end}`);
-            return;
-        }
         post(route('pemasukan-mingguan.store'), {
             onSuccess: () => {
                 reset();

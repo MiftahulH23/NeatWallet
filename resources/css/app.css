@@ -167,6 +167,9 @@ h2 {
 p {
     @apply text-sm text-muted-foreground;
 }
+form {
+    @apply flex flex-col gap-3;
+}
 input[type='number'] {
     @apply proportional-nums;
 

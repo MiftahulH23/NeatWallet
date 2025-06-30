@@ -58,7 +58,7 @@ const PemasukanMingguan = (props: { pemasukanMingguan: PemasukanMingguanType.Def
         {
             accessorKey: 'amount',
             header: 'Jumlah Pemasukan',
-            cell: ({ row }) => <span className="capitalize">Rp.{Number(row.original.amount).toLocaleString('id-ID')}</span>,
+            cell: ({ row }) => <span className="capitalize">Rp {Number(row.original.amount).toLocaleString('id-ID')}</span>,
         },
         {
             accessorKey: 'tanggal',
@@ -101,7 +101,7 @@ const PemasukanMingguan = (props: { pemasukanMingguan: PemasukanMingguanType.Def
                 <h1 className="mb-4">Pemasukan Mingguan</h1>
                 <DataTable columns={columns} data={pemasukanMingguan}>
                     {({ table }) => (
-                        <DataTableControls table={table} action={<Button onClick={() => setIsAddModalOpen(true)}>Tambah</Button>} search>
+                        <DataTableControls table={table} action={<Button onClick={() => setIsAddModalOpen(true)} className='hover:cursor-pointer'>Tambah</Button>} search>
                             <DataTableFilter table={table} />
                         </DataTableControls>
                     )}
@@ -111,7 +111,7 @@ const PemasukanMingguan = (props: { pemasukanMingguan: PemasukanMingguanType.Def
             <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
                 <DialogContent>
                     <h2>Tambah Pemasukan Mingguan</h2>
-                    <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit}>
                         <div className="flex flex-col gap-2">
                             <Label htmlFor="amount">Jumlah Pemasukan</Label>
                             <Input
@@ -155,7 +155,7 @@ const PemasukanMingguan = (props: { pemasukanMingguan: PemasukanMingguanType.Def
                         </div>
 
                         <div className="flex justify-end">
-                            <Button type="submit" disabled={processing}>
+                            <Button type="submit" disabled={processing} className='cursor-pointer'>
                                 {processing ? 'Menyimpan...' : 'Simpan'}
                             </Button>
                         </div>

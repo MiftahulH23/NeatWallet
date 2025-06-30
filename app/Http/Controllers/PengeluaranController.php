@@ -15,7 +15,7 @@ class PengeluaranController extends Controller
      */
     public function index()
     {
-        $pengeluaran  = Pengeluaran::with('kategori_pengeluaran')->get();
+        $pengeluaran = Pengeluaran::with('kategori_pengeluaran')->get();
         $kategoriPengeluaran = KategoriPengeluaran::select('id', 'nama')->get();
         return Inertia::render('Pengeluaran', [
             'pengeluaran' => $pengeluaran,
@@ -73,16 +73,35 @@ class PengeluaranController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'kategori_pengeluaran_id' => 'required|exists:kategori_pengeluaran,id',
+            'jumlah' => 'required|numeric|min:1',
+            'tanggal' => 'required|date',
+            'keterangan' => 'nullable|string',
+        ]);
+
+        $pengeluaran = Pengeluaran::findOrFail($id);
+
+        $pengeluaran->update([
+            'kategori_pengeluaran_id' => $request->kategori_pengeluaran_id,
+            'jumlah' => $request->jumlah,
+            'tanggal' => $request->tanggal,
+            'keterangan' => $request->keterangan,
+        ]);
+
+        return redirect()->route('pengeluaran.index')->with('success', 'Data pengeluaran berhasil diperbarui');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $pengeluaran = Pengeluaran::findOrFail($id);
+        $pengeluaran->delete();
+
+        return redirect()->route('pengeluaran.index')->with('success', 'Pengeluaran berhasil dihapus');
     }
 }

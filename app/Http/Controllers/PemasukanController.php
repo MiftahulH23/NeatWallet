@@ -36,7 +36,7 @@ class PemasukanController extends Controller
             'jumlah' => 'required|numeric',
             'tanggal' => 'required|date',
             'keterangan' => 'nullable|string|max:255',
-        ],[
+        ], [
             'jumlah.required' => 'Jumlah pemasukan harus diisi.',
             'jumlah.numeric' => 'Jumlah pemasukan harus berupa angka.',
             'tanggal.required' => 'Tanggal pemasukan harus diisi.',
@@ -69,16 +69,30 @@ class PemasukanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'jumlah' => 'required|numeric|min:1',
+            'tanggal' => 'required|date',
+            'keterangan' => 'nullable|string|max:255',
+        ]);
+
+        $pemasukan = Pemasukan::findOrFail($id);
+
+        $pemasukan->update([
+            'jumlah' => $request->jumlah,
+            'tanggal' => $request->tanggal,
+            'keterangan' => $request->keterangan,
+        ]);
+
+        return redirect()->route('pemasukan.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $pemasukan = Pemasukan::findOrFail($id);
+        $pemasukan->delete();
+
+        return redirect()->route('pemasukan.index');
     }
 }

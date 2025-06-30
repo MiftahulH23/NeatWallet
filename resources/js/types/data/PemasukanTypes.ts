@@ -3,6 +3,6 @@ export namespace PemasukanType {
     id: string;
     jumlah: number;
     tanggal: string;
-    keterangan?: string;
+    keterangan: string;
   }
 }

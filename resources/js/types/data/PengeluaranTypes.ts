@@ -3,7 +3,7 @@ export namespace PengeluaranType {
         id: string;
         jumlah: number;
         tanggal: string;
-        keterangan?: string;
+        keterangan: string;
         kategori_pengeluaran_id: string;
         kategori_pengeluaran?: {
             id: string;

@@ -3,6 +3,7 @@
 use App\Http\Controllers\KategoriPengeluaranController;
 use App\Http\Controllers\PemasukanController;
 use App\Http\Controllers\PengeluaranController;
+use App\Http\Controllers\RekapKeuangan;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -29,6 +30,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // Pengeluaran Harian Controller
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('pengeluaran', PengeluaranController::class)->only(['index', 'store', 'update', 'destroy']);
+});
+
+// Rekap Keuangan
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('rekap-mingguan', [RekapKeuangan::class, 'rekapMingguan'])->name('rekap.mingguan');
+    Route::get('rekap-bulanan', [RekapKeuangan::class, 'rekapBulanan'])->name('rekap.bulanan');
 });
 
 require __DIR__.'/settings.php';

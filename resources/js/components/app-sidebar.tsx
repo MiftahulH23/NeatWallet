@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid, Wallet, CircleMinus, List, LayoutList } from 'lucide-react';
+import { BookOpen, Folder, LayoutGrid, Wallet, CircleMinus, List, LayoutList, CalendarRange, Calendar1 } from 'lucide-react';
 
 const mainNavItems: NavItem[] = [
     {
@@ -21,6 +21,16 @@ const mainNavItems: NavItem[] = [
         title: 'Pengeluaran',
         href: '/pengeluaran',
         icon: CircleMinus,
+    },
+    {
+        title: 'Rekap Mingguan',
+        href: '/rekap-mingguan',
+        icon: CalendarRange,
+    },
+    {
+        title: 'Rekap Bulanan',
+        href: '/rekap-bulanan',
+        icon: Calendar1,
     },
     {
         title: 'Kategori Pengeluaran',

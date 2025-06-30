@@ -13,7 +13,7 @@ class PemasukanController extends Controller
      */
     public function index()
     {
-        $pemasukan = Pemasukan::all();
+        $pemasukan = Pemasukan::orderBy('created_at', 'desc')->get();
         return Inertia::render('Pemasukan', [
             'pemasukan' => $pemasukan,
         ]);

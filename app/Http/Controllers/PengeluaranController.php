@@ -15,7 +15,10 @@ class PengeluaranController extends Controller
      */
     public function index()
     {
-        $pengeluaran = Pengeluaran::with('kategori_pengeluaran')->get();
+        $pengeluaran = Pengeluaran::with('kategori_pengeluaran')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
         $kategoriPengeluaran = KategoriPengeluaran::select('id', 'nama')->get();
         return Inertia::render('Pengeluaran', [
             'pengeluaran' => $pengeluaran,

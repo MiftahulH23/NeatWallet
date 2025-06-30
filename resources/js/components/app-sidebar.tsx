@@ -13,13 +13,13 @@ const mainNavItems: NavItem[] = [
         icon: LayoutGrid,
     },
     {
-        title: 'Pemasukan Mingguan',
-        href: '/pemasukan-mingguan',
+        title: 'Pemasukan',
+        href: '/pemasukan',
         icon: Wallet,
     },
     {
-        title: 'Pengeluaran Harian',
-        href: '/pengeluaran-harian',
+        title: 'Pengeluaran',
+        href: '/pengeluaran',
         icon: CircleMinus,
     },
     {

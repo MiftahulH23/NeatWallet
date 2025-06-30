@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pengeluaran_harian', function (Blueprint $table) {
+        Schema::create('pengeluaran', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->integer('jumlah');
             $table->date('tanggal');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pengeluaran_harian');
+        Schema::dropIfExists('pengeluaran');
     }
 };

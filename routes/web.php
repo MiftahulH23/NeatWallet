@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\KategoriPengeluaranController;
-use App\Http\Controllers\PemasukanMingguanController;
-use App\Http\Controllers\PengeluaranHarianController;
+use App\Http\Controllers\PemasukanController;
+use App\Http\Controllers\PengeluaranController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -18,7 +18,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 // Pemasukan Mingguan Controller
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::resource('pemasukan-mingguan', PemasukanMingguanController::class)->only(['index', 'store', 'update', 'destroy']);
+    Route::resource('pemasukan', PemasukanController::class)->only(['index', 'store', 'update', 'destroy']);
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -27,8 +27,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 // Pengeluaran Harian Controller
-Route::middleware(['auth', 'verified'])->prefix('pengeluaran-harian')->name('pengeluaran-harian.')->group(function () {
-    Route::resource('/', PengeluaranHarianController::class)->only(['index', 'store', 'update', 'destroy']);
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::resource('pengeluaran', PengeluaranController::class)->only(['index', 'store', 'update', 'destroy']);
 });
 
 require __DIR__.'/settings.php';

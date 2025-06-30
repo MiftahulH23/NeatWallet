@@ -1,7 +1,7 @@
-export namespace PemasukanMingguanType {
+export namespace PemasukanType {
   export interface Default {
     id: string;
-    amount: number;
+    jumlah: number;
     tanggal: string;
     keterangan?: string;
   }

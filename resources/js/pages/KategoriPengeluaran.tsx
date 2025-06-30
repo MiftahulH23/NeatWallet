@@ -112,8 +112,9 @@ const KategoriPengeluaran = (props: { kategoriPengeluaran: KategoriPengeluaranTy
                 <h1 className="mb-4">Kategori Pengeluaran</h1>
                 <DataTable columns={columns} data={kategoriPengeluaran}>
                     {({ table }) => (
-                        <DataTableControls table={table}>
-                            <Button onClick={() => setIsAddModalOpen(true)}>Tambah</Button>
+                        <DataTableControls table={table} action={
+                             <Button onClick={() => setIsAddModalOpen(true)}>Tambah</Button>
+                        }>
                         </DataTableControls>
                     )}
                 </DataTable>

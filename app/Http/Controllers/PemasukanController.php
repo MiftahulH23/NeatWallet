@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PemasukanMingguan;
+use App\Models\Pemasukan;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class PemasukanMingguanController extends Controller
+class PemasukanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $pemasukanMingguan = PemasukanMingguan::all();
-        return Inertia::render('PemasukanMingguan', [
-            'pemasukanMingguan' => $pemasukanMingguan,
+        $pemasukan = Pemasukan::all();
+        return Inertia::render('Pemasukan', [
+            'pemasukan' => $pemasukan,
         ]);
     }
 
@@ -33,21 +33,21 @@ class PemasukanMingguanController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'amount' => 'required|numeric',
+            'jumlah' => 'required|numeric',
             'tanggal' => 'required|date',
             'keterangan' => 'nullable|string|max:255',
         ],[
-            'amount.required' => 'Jumlah pemasukan harus diisi.',
-            'amount.numeric' => 'Jumlah pemasukan harus berupa angka.',
+            'jumlah.required' => 'Jumlah pemasukan harus diisi.',
+            'jumlah.numeric' => 'Jumlah pemasukan harus berupa angka.',
             'tanggal.required' => 'Tanggal pemasukan harus diisi.',
             'tanggal.date' => 'Tanggal pemasukan harus berupa tanggal yang valid.',
             'keterangan.string' => 'Keterangan harus berupa teks.',
             'keterangan.max' => 'Keterangan tidak boleh lebih dari 255 karakter.',
         ]);
 
-        PemasukanMingguan::create($validated);
+        Pemasukan::create($validated);
 
-        return redirect()->route('pemasukan-mingguan.index')->with('success', 'Pemasukan Mingguan berhasil ditambahkan.');
+        return redirect()->route('pemasukan.index')->with('success', 'Pemasukan Mingguan berhasil ditambahkan.');
     }
 
     /**
